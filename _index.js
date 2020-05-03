@@ -15,7 +15,7 @@ function run(serviceStartCb) {
 				throw new Error('Failed starting service');
 			}
 			
-			service.get("/search", function (req, res) {
+			service.post("/search", function (req, res) {
 				bl.user.search(req.soajs, req.soajs.inputmaskData, null, (error, data) => {
 					return res.json(req.soajs.buildResponse(error, data));
 				});
