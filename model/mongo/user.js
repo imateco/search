@@ -30,6 +30,7 @@ function User(soajs, localConfig, mongoCore) {
 	if (indexing && soajs && soajs.tenant && soajs.tenant.id && !indexing[soajs.tenant.id]) {
 		indexing[soajs.tenant.id] = true;
 		
+		//VINNY: add indexes
 		/*
 		__self.mongoCore.createIndex(colName, {'tenant.id': 1}, {}, (err, index) => {
 			soajs.log.debug("Index: " + index + " created with error: " + err);
@@ -42,6 +43,8 @@ function User(soajs, localConfig, mongoCore) {
 
 User.prototype.search = function (data, cb) {
 	let __self = this;
+	
+	//VINNY: create teh condition and options before calling find
 	let condition = {};
 	let options = {};
 	

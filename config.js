@@ -45,6 +45,13 @@ module.exports = {
 				"_apiInfo": {
 					"l": "This API allows you to search the URAC users",
 					"group": "Search"
+				},
+				"name": {
+					"source": ['body.name'],
+					"required": true,
+					"validation": {
+						"type": "string"
+					}
 				}
 				
 			}
