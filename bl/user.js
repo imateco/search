@@ -32,6 +32,7 @@ let bl = {
 			return cb(bl.handleError(soajs, 400, null));
 		}
 		let modelObj = bl.mt.getModel(soajs, options);
+
 		modelObj.search(inputmaskData, (err, result) => {
 			bl.mt.closeModel(modelObj);
 			if (err) {

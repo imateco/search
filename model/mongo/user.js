@@ -25,7 +25,7 @@ function User(soajs, localConfig, mongoCore) {
 		if (soajs.tenant.type === "client" && soajs.tenant.main) {
 			tCode = soajs.tenant.main.code;
 		}
-		__self.mongoCore = new Mongo(soajs.meta.tenantDB(soajs.registry.tenantMetaDB, localConfig.serviceName, tCode));
+		__self.mongoCore = new Mongo(soajs.meta.tenantDB(soajs.registry.tenantMetaDB, 'urac', tCode));
 	}
 	if (indexing && soajs && soajs.tenant && soajs.tenant.id && !indexing[soajs.tenant.id]) {
 		indexing[soajs.tenant.id] = true;
@@ -43,9 +43,43 @@ function User(soajs, localConfig, mongoCore) {
 
 User.prototype.search = function (data, cb) {
 	let __self = this;
-	
+
 	//VINNY: create teh condition and options before calling find
 	let condition = {};
+	
+	if (data.location) {
+		condition['profile.country'] = data.location;
+	}
+
+	if (data.knowBest) {
+		condition['profile.knowBest'] = data.knowBest;
+	}
+	
+	if (data.yearsExperience) {
+                condition['profile.yearsExperience'] = data.yearsExperience;
+        }
+
+	if (data.workedStartup) {
+                condition['profile.workedStartup'] = data.workedStartup;
+        }
+
+	if (data.commitFulltime) {
+                condition['profile.commitFulltime'] = data.commitFulltime;
+        }
+
+	if (data.willingRelocate) {
+                condition['profile.willingRelocate'] = data.willingRelocate;
+        }
+
+	if (data.equity) {
+                condition['profile.equity'] = data.equity;
+        }
+
+	if (data.whenStart) {
+                condition['profile.whenStart'] = data.whenStart;
+        }
+
+
 	let options = {};
 	
 	__self.mongoCore.find(colName, condition, options, (err, records) => {

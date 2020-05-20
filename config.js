@@ -12,7 +12,7 @@ module.exports = {
 	"servicePort": 4150,
 	"requestTimeout": 30,
 	"requestTimeoutRenewal": 5,
-	"oauth": true,
+	"oauth": false,
 	"extKeyRequired": true,
 	
 	"maintenance": {
@@ -39,7 +39,6 @@ module.exports = {
 	},
 	
 	"schema": {
-		
 		"post": {
 			'/search': {
 				"_apiInfo": {
@@ -48,12 +47,81 @@ module.exports = {
 				},
 				"name": {
 					"source": ['body.name'],
-					"required": true,
+					"required": false,
 					"validation": {
 						"type": "string"
 					}
-				}
-				
+				},
+                                "location": {
+                                        "source": ['body.location'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "knowBest": {
+                                        "source": ['body.knowBest'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "yearsExperience": {
+                                        "source": ['body.yearsExperience'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "workedStartup": {
+                                        "source": ['body.workedStartup'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "commitFulltime": {
+                                        "source": ['body.commitFulltime'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "willingRelocate": {
+                                        "source": ['body.willingRelocate'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "equity": {
+                                        "source": ['body.equity'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "whenStart": {
+                                        "source": ['body.whenStart'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+				"start": {
+                                        "source": ['body.start'],
+                                        "required": true,
+                                        "validation": {
+                                                "type": "integer"
+                                        }
+                                },
+				"limit": {
+                                        "source": ['body.limit'],
+                                        "required": true,
+                                        "validation": {
+                                                "type": "integer"
+                                        }
+                                }
 			}
 		}
 	}

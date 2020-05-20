@@ -13,8 +13,7 @@ function run(serviceStartCb) {
 		bl.init(service, config, (error) => {
 			if (error) {
 				throw new Error('Failed starting service');
-			}
-			
+			}		
 			service.post("/search", function (req, res) {
 				bl.user.search(req.soajs, req.soajs.inputmaskData, null, (error, data) => {
 					return res.json(req.soajs.buildResponse(error, data));
