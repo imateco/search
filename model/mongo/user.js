@@ -105,8 +105,6 @@ User.prototype.search = function (data, cb) {
         'config.allowedTenants.tenant.pin.code': 0
     };
 	
-	console.log(options);
-
 	__self.mongoCore.find(colName, condition, options, (err, records) => {
 		return cb(err, records);
 	});
