@@ -93,12 +93,10 @@ User.prototype.search = function (data, cb) {
 
 	let options = {};
 
-	if (data && data.limit) {
-        options.skip = data.start;
-        options.limit = data.limit;
-        options.sort = {};
-	}
 	
+    options.skip = data.start;
+    options.limit = data.limit;
+    options.sort = {};
 	options.projection = {
         'password': 0,
         'config': 0,
@@ -107,6 +105,8 @@ User.prototype.search = function (data, cb) {
         'config.allowedTenants.tenant.pin.code': 0
     };
 	
+	console.log(options);
+
 	__self.mongoCore.find(colName, condition, options, (err, records) => {
 		return cb(err, records);
 	});
