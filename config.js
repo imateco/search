@@ -122,6 +122,75 @@ module.exports = {
                                                 "type": "integer"
                                         }
                                 }
+                        },
+                        '/count': {
+				"_apiInfo": {
+					"l": "This API allows you to count the URAC users",
+					"group": "Search"
+				},
+				"name": {
+					"source": ['body.name'],
+					"required": false,
+					"validation": {
+						"type": "string"
+					}
+				},
+                                "location": {
+                                        "source": ['body.location'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "knowBest": {
+                                        "source": ['body.knowBest'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "yearsExperience": {
+                                        "source": ['body.yearsExperience'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "workedStartup": {
+                                        "source": ['body.workedStartup'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "commitFulltime": {
+                                        "source": ['body.commitFulltime'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "willingRelocate": {
+                                        "source": ['body.willingRelocate'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "equity": {
+                                        "source": ['body.equity'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                },
+                                "whenStart": {
+                                        "source": ['body.whenStart'],
+                                        "required": false,
+                                        "validation": {
+                                                "type": "string"
+                                        }
+                                }
 			}
 		}
 	}

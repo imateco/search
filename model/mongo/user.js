@@ -44,7 +44,6 @@ function User(soajs, localConfig, mongoCore) {
 User.prototype.search = function (data, cb) {
 	let __self = this;
 
-	//VINNY: create teh condition and options before calling find
 	let condition = {};
 	
 	if (data.location) {
@@ -56,34 +55,107 @@ User.prototype.search = function (data, cb) {
 	}
 	
 	if (data.yearsExperience) {
-                condition['profile.yearsExperience'] = data.yearsExperience;
-        }
+        condition['profile.yearsExperience'] = data.yearsExperience;
+    }
 
 	if (data.workedStartup) {
-                condition['profile.workedStartup'] = data.workedStartup;
-        }
+        condition['profile.workedStartup'] = data.workedStartup;
+    }
 
 	if (data.commitFulltime) {
-                condition['profile.commitFulltime'] = data.commitFulltime;
-        }
+        condition['profile.commitFulltime'] = data.commitFulltime;
+    }
 
 	if (data.willingRelocate) {
-                condition['profile.willingRelocate'] = data.willingRelocate;
-        }
+        condition['profile.willingRelocate'] = data.willingRelocate;
+    }
 
 	if (data.equity) {
-                condition['profile.equity'] = data.equity;
-        }
+        condition['profile.equity'] = data.equity;
+    }
 
 	if (data.whenStart) {
-                condition['profile.whenStart'] = data.whenStart;
-        }
+        condition['profile.whenStart'] = data.whenStart;
+    }
 
+	if (data && data.name) {
+		let rePattern = new RegExp(data.name, 'i');
+        condition.$or = [
+			{"profile.fronted": {"$regex": rePattern}},
+			{"profile.backend": {"$regex": rePattern}},
+			{"profile.devops": {"$regex": rePattern}},
+			{"profile.design": {"$regex": rePattern}},
+			{"profile.database": {"$regex": rePattern}},
+            {"firstName": {"$regex": rePattern}},
+            {"lastName": {"$regex": rePattern}},
+        ];
+	}
 
 	let options = {};
+
+	if (data && data.limit && data.start) {
+		options.skip = data.start;
+		options.limit = data.limit;
+		options.sort = {};
+	}
 	
 	__self.mongoCore.find(colName, condition, options, (err, records) => {
 		return cb(err, records);
+	});
+};
+
+User.prototype.count = function (data, cb) {
+	let __self = this;
+
+	let condition = {};
+	
+	if (data.location) {
+		condition['profile.country'] = data.location;
+	}
+
+	if (data.knowBest) {
+		condition['profile.knowBest'] = data.knowBest;
+	}
+	
+	if (data.yearsExperience) {
+        condition['profile.yearsExperience'] = data.yearsExperience;
+    }
+
+	if (data.workedStartup) {
+        condition['profile.workedStartup'] = data.workedStartup;
+    }
+
+	if (data.commitFulltime) {
+        condition['profile.commitFulltime'] = data.commitFulltime;
+    }
+
+	if (data.willingRelocate) {
+        condition['profile.willingRelocate'] = data.willingRelocate;
+    }
+
+	if (data.equity) {
+        condition['profile.equity'] = data.equity;
+    }
+
+	if (data.whenStart) {
+        condition['profile.whenStart'] = data.whenStart;
+    }
+
+	if (data && data.name) {
+		let rePattern = new RegExp(data.name, 'i');
+        condition.$or = [
+			{"profile.fronted": {"$regex": rePattern}},
+			{"profile.backend": {"$regex": rePattern}},
+			{"profile.devops": {"$regex": rePattern}},
+			{"profile.design": {"$regex": rePattern}},
+			{"profile.database": {"$regex": rePattern}},
+            {"firstName": {"$regex": rePattern}},
+            {"lastName": {"$regex": rePattern}},
+        ];
+	}
+
+	__self.mongoCore.count(colName, condition, (err, count) => {
+		return cb(err, count);
 	});
 };
 

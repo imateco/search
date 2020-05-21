@@ -40,6 +40,20 @@ let bl = {
 			}
 			return cb(null, result);
 		});
+	},
+	"count": (soajs, inputmaskData, options, cb) => {
+		if (!inputmaskData) {
+			return cb(bl.handleError(soajs, 400, null));
+		}
+		let modelObj = bl.mt.getModel(soajs, options);
+
+		modelObj.count(inputmaskData, (err, result) => {
+			bl.mt.closeModel(modelObj);
+			if (err) {
+				return cb(bl.handleError(soajs, 602, err));
+			}
+			return cb(null, result);
+		});
 	}
 };
 
