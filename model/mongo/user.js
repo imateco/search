@@ -76,7 +76,9 @@ User.prototype.search = function (data, cb) {
 
 	if (data.whenStart) {
         condition['profile.whenStart'] = data.whenStart;
-    }
+	}
+	
+	condition["status"] = "active"
 
 	if (data && data.name) {
 		let rePattern = new RegExp(data.name, 'i');
@@ -146,6 +148,8 @@ User.prototype.count = function (data, cb) {
 	if (data.whenStart) {
         condition['profile.whenStart'] = data.whenStart;
     }
+
+	condition["status"] = "active"
 
 	if (data && data.name) {
 		let rePattern = new RegExp(data.name, 'i');
