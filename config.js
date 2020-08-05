@@ -28,6 +28,10 @@ module.exports = {
 		"addon": ["search", "profile"]
 	},
 	"program": ["imateco"],
+	"documentation": {
+		"readme": "/README.md",
+		"release": "/RELEASE.md"
+	},
 	
 	//-------------------------------------
 	"errors": {
