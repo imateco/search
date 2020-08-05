@@ -23,6 +23,11 @@ module.exports = {
 			{"label": "Resource Info", "path": "/resourceInfo", "icon": "fas fa-info"}
 		]
 	},
+	"tags": ["urac", "search"],
+	"attributes": {
+		"addon": ["search", "profile"]
+	},
+	"program": ["imateco"],
 	
 	//-------------------------------------
 	"errors": {
