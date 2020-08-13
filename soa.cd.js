@@ -35,8 +35,8 @@ let utils = {
 		}
 		
 		if (!SOAJS_repo_tag &&
-			(!SOAJS_repo_commit && !SOAJS_repo_branch) &&
-			(!SOAJS_img_name && !SOAJS_img_prefix && !SOAJS_img_tag)) {
+			(!SOAJS_repo_commit || !SOAJS_repo_branch) &&
+			(!SOAJS_img_name || !SOAJS_img_prefix || !SOAJS_img_tag)) {
 			console.log("Missing CD Environment variable not found");
 			process.exit(-1);
 		}
@@ -94,6 +94,7 @@ let utils = {
 				from: {}
 			}
 		};
+		
 		if (SOAJS_repo_tag) {
 			params.body.config.from.tag = SOAJS_repo_tag;
 		}
@@ -101,8 +102,11 @@ let utils = {
 			params.body.config.from.branch = SOAJS_repo_branch;
 			params.body.config.from.commit = SOAJS_repo_commit;
 		}
-		if (SOAJS_img_name && SOAJS_img_prefix) {
+		
+		if (SOAJS_img_prefix) {
 			params.body.config.from.image_prefix = SOAJS_img_prefix;
+		}
+		if (SOAJS_img_name) {
 			params.body.config.from.image_name = SOAJS_img_name;
 		}
 		if (SOAJS_img_tag) {
