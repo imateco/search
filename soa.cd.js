@@ -40,6 +40,12 @@ let utils = {
 			console.log("Missing CD Environment variable not found");
 			process.exit(-1);
 		}
+		if (SOAJS_img_prefix || SOAJS_img_name) {
+			if (!SOAJS_img_prefix || !SOAJS_img_name || !SOAJS_img_tag) {
+				console.log("You can either set [SOAJS_img_tag] or [SOAJS_img_tag && SOAJS_img_prefix && SOAJS_img_name]");
+				process.exit(-1);
+			}
+		}
 		
 		//example export SOAJS_env_list=dashboard,dev
 		if (process.env.SOAJS_env_list) {
