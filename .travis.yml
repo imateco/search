@@ -1,0 +1,26 @@
+language: node_js
+
+node_js: 10
+
+jobs:
+  include:
+
+  - stage: install, check code style and coverage
+    if: tag IS blank
+    services:
+    - mongodb
+    addons:
+      hosts:
+      - localhost
+    before_script:
+    - npm install -g grunt-cli
+    - sleep 10
+    script:
+    - grunt
+    - grunt test
+
+  - stage: Continuous Delivery
+    if: branch =~ /(master)/
+    script:
+    - echo "CD with SOAJS"
+    - node soa.cd.js
