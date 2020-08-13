@@ -53,8 +53,6 @@ let utils = {
 		}
 		console.log("Launching CD call...");
 		utils.createRequest(function (params) {
-			console.log(params.uri);
-			console.log(JSON.stringify(params, null, 2));
 			request.put(params, cb);
 		});
 	},
@@ -103,16 +101,15 @@ let utils = {
 			params.body.config.from.commit = SOAJS_repo_commit;
 		}
 		
+		if (SOAJS_img_tag) {
+			params.body.config.from.image_tag = SOAJS_img_tag;
+		}
 		if (SOAJS_img_prefix) {
 			params.body.config.from.image_prefix = SOAJS_img_prefix;
 		}
 		if (SOAJS_img_name) {
 			params.body.config.from.image_name = SOAJS_img_name;
 		}
-		if (SOAJS_img_tag) {
-			params.body.config.from.image_tag = SOAJS_img_tag;
-		}
-		
 		if (SOAJS_env_list) {
 			params.body.config.from.env = SOAJS_env_list;
 		}
