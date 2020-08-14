@@ -14,7 +14,7 @@ module.exports = {
 	"requestTimeoutRenewal": 5,
 	"oauth": false,
 	"extKeyRequired": true,
-	"description": "This the search microservice for imateco.",
+	"description": "This is the search microservice for imateco.",
 	"maintenance": {
 		"readiness": "/heartbeat",
 		"port": {"type": "maintenance"},
