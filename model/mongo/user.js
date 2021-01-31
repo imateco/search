@@ -100,11 +100,10 @@ User.prototype.search = function (data, cb) {
 	options.limit = data.limit;
 	options.sort = {};
 	options.projection = {
-		'password': 0,
-		'config': 0,
-		'socialId': 0,
-		'tenant.pin.code': 0,
-		'config.allowedTenants.tenant.pin.code': 0
+		"password": 0,
+		"config": 0,
+		"socialId": 0,
+		"tenant.pin.code": 0
 	};
 	
 	__self.mongoCore.find(colName, condition, options, (err, records) => {
@@ -164,7 +163,7 @@ User.prototype.count = function (data, cb) {
 		];
 	}
 	
-	__self.mongoCore.count(colName, condition, (err, count) => {
+	__self.mongoCore.countDocuments(colName, condition, {}, (err, count) => {
 		return cb(err, count);
 	});
 };
