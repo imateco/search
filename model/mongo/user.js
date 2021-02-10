@@ -103,7 +103,14 @@ User.prototype.search = function (data, cb) {
 		"password": 0,
 		"config": 0,
 		"socialId": 0,
-		"tenant.pin.code": 0
+		"tenant.pin.code": 0,
+		"email": 0,
+		"status": 0,
+		"tenant": 0,
+		"groups": 0,
+		"lastLogin":0,
+		"ts":0,
+		"username": 0
 	};
 	
 	__self.mongoCore.find(colName, condition, options, (err, records) => {
