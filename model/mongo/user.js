@@ -103,7 +103,6 @@ User.prototype.search = function (data, cb) {
 		"password": 0,
 		"config": 0,
 		"socialId": 0,
-		"tenant.pin.code": 0,
 		"email": 0,
 		"status": 0,
 		"tenant": 0,
